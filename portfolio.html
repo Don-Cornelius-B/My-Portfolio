@@ -4,101 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-        }
-        nav {
-            margin-top: 1rem;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        .project {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 1rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            text-align: center;
-            padding: 1rem 0;
-            background-color: #333;
-            color: #fff;
-            margin-top: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Cinzel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>My Portfolio</h1>
+        <img src="profile.jpg" alt="Profile Photo" class="profile-photo">
+        <h1>Don Cornelius Livi</h1>
         <nav>
             <a href="#about">About Me</a>
+            <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <section id="about">
+    <section id="about" class="fade-in">
         <h2>About Me</h2>
-        <p>Hello! I am a student studying to become a full-stack developer. I am passionate about coding, learning new technologies, and building amazing web applications. This portfolio showcases some of my projects and skills.</p>
+        <p>Hello! I am a student studying to become a full-stack developer. I am passionate about coding, learning new technologies, and building amazing web applications. I also love performing on my guitar, blending creativity into my code and music.</p>
     </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <h3>Project 1</h3>
-                <p>A brief description of the project. This could be a web app, a game, or any other project you've worked on.</p>
-            </div>
-            <div class="project">
-                <h3>Project 2</h3>
-                <p>A brief description of the project. Highlight the technologies used and what you learned.</p>
-            </div>
-            <div class="project">
-                <h3>Project 3</h3>
-                <p>A brief description of the project. Include any challenges you overcame during development.</p>
-            </div>
+    <section id="skills" class="fade-in">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <div class="skill"><img src="html-logo.png" alt="HTML"><span>HTML</span></div>
+            <div class="skill"><img src="css-logo.png" alt="CSS"><span>CSS</span></div>
+            <div class="skill"><img src="js-logo.png" alt="JavaScript"><span>JavaScript</span></div>
+            <div class="skill"><img src="react-logo.png" alt="React"><span>React</span></div>
+            <div class="skill"><img src="node-logo.png" alt="Node.js"><span>Node.js</span></div>
+            <div class="skill"><img src="guitar-icon.png" alt="Guitar"><span>Guitar</span></div>
         </div>
     </section>
 
-    <section id="contact">
+    <section id="projects" class="fade-in">
+        <h2>Projects</h2>
+        <div class="projects">
+            <!-- ...existing project cards... -->
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
         <h2>Contact</h2>
-        <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn.</p>
-        <ul>
-            <li>Email: <a href="mailto:doncorneliuslivi@example.com">doncorneliuslivi@example.com</a></li>
-            <li>LinkedIn: <a href="https://www.linkedin.com/in/don-cornelius-livi/" target="_blank">linkedin.com/in/don-cornelius-livi</a></li>
-            <li>GitHub: <a href="https://github.com/Don-Cornelius-B" target="_blank">github.com/Don-Cornelius-B</a></li>
-        </ul>
+        <!-- ...existing contact info... -->
     </section>
 
     <footer>
