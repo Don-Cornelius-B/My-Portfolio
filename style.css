@@ -11,7 +11,31 @@ body {
     min-height: 100vh;
 }
 
-/* Subtle fade-in animation */
+/* Scroll-reveal (driven by IntersectionObserver in JS) */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .skill,
+    .project {
+        transition: none;
+    }
+}
+
+/* Legacy fade-in support */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -19,6 +43,13 @@ body {
 }
 @keyframes fadeInUp {
     to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .fade-in {
+        animation: none;
         opacity: 1;
         transform: none;
     }
@@ -87,6 +118,18 @@ nav a:hover {
 }
 nav a:hover::after {
     width: 100%;
+}
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+    outline: 3px solid #ffd700;
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+a:focus-visible {
+    outline: 3px solid #bfa14a;
+    outline-offset: 3px;
 }
 
 /* Section */
@@ -177,6 +220,32 @@ section p {
 .project:hover {
     box-shadow: 0 8px 24px rgba(191,161,74,0.13);
     transform: translateY(-4px) scale(1.03);
+}
+
+.project h3 {
+    color: #bfa14a;
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    margin: 0 0 10px 0;
+}
+
+.project p {
+    font-size: 1rem;
+    color: #444;
+    margin: 0 0 12px 0;
+}
+
+.project a {
+    color: #bfa14a;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid #ffd700;
+    transition: color 0.2s, border-bottom 0.2s;
+}
+
+.project a:hover {
+    color: #ffd700;
+    border-bottom: 2px solid #bfa14a;
 }
 
 /* Contact Section */
