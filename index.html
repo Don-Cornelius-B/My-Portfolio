@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don Cornelius Livi | Full-Stack Developer Portfolio</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio of Don Cornelius Livi — a full-stack developer student passionate about web development, React, Node.js, and guitar.">
+    <meta name="author" content="Don Cornelius Livi">
+    <meta name="keywords" content="portfolio, full-stack developer, web development, React, Node.js, JavaScript, HTML, CSS">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Don Cornelius Livi | Full-Stack Developer Portfolio">
+    <meta property="og:description" content="Portfolio of Don Cornelius Livi — a full-stack developer student passionate about web development, React, Node.js, and guitar.">
+    <meta property="og:image" content="profile.jpg">
+
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Cinzel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img
+            src="profile.jpg"
+            alt="Don Cornelius Livi — profile photo"
+            class="profile-photo"
+            onerror="this.style.display='none'"
+        >
+        <h1>Don Cornelius Livi</h1>
+        <nav aria-label="Main navigation">
+            <a href="#about">About Me</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="reveal">
+            <h2>About Me</h2>
+            <p>Hello! I am a student studying to become a full-stack developer. I am passionate about coding, learning new technologies, and building amazing web applications. I also love performing on my guitar, blending creativity into my code and music.</p>
+        </section>
+
+        <section id="skills" class="reveal">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <div class="skill">
+                    <img src="html-logo.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+                    <span>HTML</span>
+                </div>
+                <div class="skill">
+                    <img src="css-logo.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+                    <span>CSS</span>
+                </div>
+                <div class="skill">
+                    <img src="js-logo.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill">
+                    <img src="react-logo.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+                    <span>React</span>
+                </div>
+                <div class="skill">
+                    <img src="node-logo.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+                    <span>Node.js</span>
+                </div>
+                <div class="skill">
+                    <img src="guitar-icon.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+                    <span>Guitar</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="reveal">
+            <h2>Projects</h2>
+            <div class="projects">
+                <article class="project">
+                    <h3>My Portfolio</h3>
+                    <p>This very portfolio website — built with HTML, CSS, and vanilla JavaScript featuring a Royal Marble &amp; Gold theme, responsive design, and scroll-reveal animations.</p>
+                    <a href="https://github.com/Don-Cornelius-B/My-Portfolio" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+                </article>
+                <article class="project">
+                    <h3>Project Two</h3>
+                    <p>Description coming soon. Check back later or visit my GitHub profile for the latest work.</p>
+                    <a href="https://github.com/Don-Cornelius-B" target="_blank" rel="noopener noreferrer">GitHub Profile →</a>
+                </article>
+                <article class="project">
+                    <h3>Project Three</h3>
+                    <p>Description coming soon. Check back later or visit my GitHub profile for the latest work.</p>
+                    <a href="https://github.com/Don-Cornelius-B" target="_blank" rel="noopener noreferrer">GitHub Profile →</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal">
+            <h2>Contact</h2>
+            <p>Feel free to reach out — I'm always open to new opportunities and collaborations.</p>
+            <p>
+                <a href="https://github.com/Don-Cornelius-B" target="_blank" rel="noopener noreferrer">GitHub</a>
+                &nbsp;|&nbsp;
+                <!-- TODO: replace with your actual email address -->
+                <a href="mailto:your.email@example.com">Email Me</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Don Cornelius Livi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll-reveal with IntersectionObserver
+        // Falls back gracefully: if IntersectionObserver is unsupported, sections stay visible.
+        (function () {
+            var sections = document.querySelectorAll('.reveal');
+
+            if (!('IntersectionObserver' in window)) {
+                // Fallback: show all sections immediately
+                sections.forEach(function (el) { el.classList.add('visible'); });
+                return;
+            }
+
+            var observer = new IntersectionObserver(
+                function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target); // animate once
+                        }
+                    });
+                },
+                { threshold: 0.15 }
+            );
+
+            sections.forEach(function (el) { observer.observe(el); });
+        }());
+    </script>
+</body>
+</html>
