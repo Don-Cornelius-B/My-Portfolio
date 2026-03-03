@@ -6,12 +6,31 @@
   color-scheme: dark;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   @apply bg-gradient-to-b from-charcoal via-night to-black text-slate-100 antialiased;
+  min-height: 100vh;
+  margin: 0;
 }
 
 .glass {
   @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-glow;
+}
+
+.panel {
+  @apply glass rounded-2xl p-6;
+}
+
+.hero-grid {
+  background-image: radial-gradient(rgba(56, 189, 248, 0.18) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.section-title {
+  @apply text-xl font-semibold text-cyan-200;
 }
 
 .accent-border {
@@ -51,4 +70,19 @@ body {
     rgba(255, 255, 255, 0) 36%
   );
   background-size: 100% 8px;
+}
+
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 0.45px, transparent 0.45px);
+  background-size: 3px 3px;
+  border-radius: inherit;
 }
