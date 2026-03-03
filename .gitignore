@@ -4,6 +4,7 @@ Thumbs.db
 
 # Editor directories and files
 .vscode/
+.vs/
 .idea/
 *.suo
 *.ntvs*
@@ -13,6 +14,13 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+coverage/
+.vercel/
 
 # Local environment files
 .env
