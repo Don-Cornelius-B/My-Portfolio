@@ -18,17 +18,21 @@ body {
   overflow-x: hidden;
 }
 
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  inset: -25% 0 -15% 0;
-  pointer-events: none;
+.app-shell {
+  position: relative;
+  z-index: 2;
 }
 
-body::before {
-  z-index: 0;
-  opacity: 0.32;
+.stars {
+  position: fixed;
+  inset: -20% 0 -10% 0;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform, opacity;
+}
+
+.stars--far {
+  opacity: 0.55;
   background-image:
     radial-gradient(1px 1px at 12% 6%, rgba(255, 255, 255, 0.9), transparent 60%),
     radial-gradient(1px 1px at 22% 28%, rgba(186, 230, 253, 0.9), transparent 60%),
@@ -46,26 +50,20 @@ body::before {
     radial-gradient(1px 1px at 37% 81%, rgba(255, 255, 255, 0.84), transparent 60%),
     radial-gradient(1.1px 1.1px at 63% 78%, rgba(224, 242, 254, 0.84), transparent 60%),
     radial-gradient(1px 1px at 88% 86%, rgba(255, 255, 255, 0.84), transparent 60%);
-  animation: stars-fall 54s linear infinite;
+  animation: stars-fall 48s linear infinite;
 }
 
-body::after {
-  z-index: 0;
-  opacity: 0.16;
+.stars--near {
+  opacity: 0.3;
   background-image:
-    linear-gradient(180deg, rgba(186, 230, 253, 0) 0%, rgba(186, 230, 253, 0.55) 42%, rgba(186, 230, 253, 0) 100%),
-    linear-gradient(180deg, rgba(224, 242, 254, 0) 0%, rgba(224, 242, 254, 0.48) 48%, rgba(224, 242, 254, 0) 100%),
-    linear-gradient(180deg, rgba(186, 230, 253, 0) 0%, rgba(186, 230, 253, 0.52) 40%, rgba(186, 230, 253, 0) 100%);
+    linear-gradient(180deg, rgba(186, 230, 253, 0) 0%, rgba(186, 230, 253, 0.65) 42%, rgba(186, 230, 253, 0) 100%),
+    linear-gradient(180deg, rgba(224, 242, 254, 0) 0%, rgba(224, 242, 254, 0.56) 48%, rgba(224, 242, 254, 0) 100%),
+    linear-gradient(180deg, rgba(186, 230, 253, 0) 0%, rgba(186, 230, 253, 0.62) 40%, rgba(186, 230, 253, 0) 100%);
   background-size: 2px 180px, 2px 220px, 2px 200px;
   background-position: 14% 0, 52% -80px, 84% -40px;
   background-repeat: repeat-y;
-  filter: blur(0.4px);
-  animation: stars-fall-fast 20s linear infinite;
-}
-
-main {
-  position: relative;
-  z-index: 1;
+  filter: blur(0.35px);
+  animation: stars-fall-fast 18s linear infinite;
 }
 
 @keyframes stars-fall {
@@ -158,8 +156,8 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body::before,
-  body::after {
+  .stars--far,
+  .stars--near {
     animation: none;
   }
 }

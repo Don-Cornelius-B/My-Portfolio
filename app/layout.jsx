@@ -17,7 +17,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div aria-hidden="true" className="stars stars--far" />
+        <div aria-hidden="true" className="stars stars--near" />
+        <div className="app-shell">{children}</div>
+      </body>
     </html>
   );
 }
