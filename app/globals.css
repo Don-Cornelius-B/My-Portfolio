@@ -32,38 +32,33 @@ body {
 }
 
 .stars--far {
-  opacity: 0.55;
+  opacity: 0.72;
   background-image:
-    radial-gradient(1px 1px at 12% 6%, rgba(255, 255, 255, 0.9), transparent 60%),
-    radial-gradient(1px 1px at 22% 28%, rgba(186, 230, 253, 0.9), transparent 60%),
-    radial-gradient(1.2px 1.2px at 44% 18%, rgba(255, 255, 255, 0.92), transparent 60%),
-    radial-gradient(1px 1px at 58% 34%, rgba(165, 243, 252, 0.88), transparent 60%),
-    radial-gradient(1px 1px at 71% 22%, rgba(224, 242, 254, 0.88), transparent 60%),
-    radial-gradient(1.1px 1.1px at 86% 10%, rgba(255, 255, 255, 0.9), transparent 60%),
-    radial-gradient(1px 1px at 8% 44%, rgba(186, 230, 253, 0.86), transparent 60%),
-    radial-gradient(1px 1px at 28% 54%, rgba(255, 255, 255, 0.86), transparent 60%),
-    radial-gradient(1.2px 1.2px at 52% 48%, rgba(255, 255, 255, 0.9), transparent 60%),
-    radial-gradient(1px 1px at 67% 56%, rgba(186, 230, 253, 0.82), transparent 60%),
-    radial-gradient(1px 1px at 81% 42%, rgba(255, 255, 255, 0.86), transparent 60%),
-    radial-gradient(1.1px 1.1px at 93% 50%, rgba(224, 242, 254, 0.86), transparent 60%),
-    radial-gradient(1px 1px at 16% 72%, rgba(186, 230, 253, 0.85), transparent 60%),
-    radial-gradient(1px 1px at 37% 81%, rgba(255, 255, 255, 0.84), transparent 60%),
-    radial-gradient(1.1px 1.1px at 63% 78%, rgba(224, 242, 254, 0.84), transparent 60%),
-    radial-gradient(1px 1px at 88% 86%, rgba(255, 255, 255, 0.84), transparent 60%);
-  animation: stars-fall 48s linear infinite;
+    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.95) 98%, transparent),
+    radial-gradient(1px 1px at 140px 80px, rgba(186, 230, 253, 0.9) 98%, transparent),
+    radial-gradient(1.2px 1.2px at 90px 170px, rgba(224, 242, 254, 0.9) 98%, transparent),
+    radial-gradient(1px 1px at 210px 220px, rgba(255, 255, 255, 0.88) 98%, transparent),
+    radial-gradient(1.1px 1.1px at 45px 250px, rgba(165, 243, 252, 0.88) 98%, transparent),
+    radial-gradient(1px 1px at 185px 20px, rgba(255, 255, 255, 0.9) 98%, transparent);
+  background-size: 260px 260px;
+  background-repeat: repeat;
+  animation: stars-fall 40s linear infinite;
 }
 
 .stars--near {
-  opacity: 0.3;
+  opacity: 0.52;
   background-image:
-    linear-gradient(180deg, rgba(186, 230, 253, 0) 0%, rgba(186, 230, 253, 0.65) 42%, rgba(186, 230, 253, 0) 100%),
-    linear-gradient(180deg, rgba(224, 242, 254, 0) 0%, rgba(224, 242, 254, 0.56) 48%, rgba(224, 242, 254, 0) 100%),
-    linear-gradient(180deg, rgba(186, 230, 253, 0) 0%, rgba(186, 230, 253, 0.62) 40%, rgba(186, 230, 253, 0) 100%);
-  background-size: 2px 180px, 2px 220px, 2px 200px;
-  background-position: 14% 0, 52% -80px, 84% -40px;
-  background-repeat: repeat-y;
-  filter: blur(0.35px);
-  animation: stars-fall-fast 18s linear infinite;
+    radial-gradient(1.4px 1.4px at 28px 18px, rgba(255, 255, 255, 0.98) 98%, transparent),
+    radial-gradient(1.5px 1.5px at 110px 110px, rgba(186, 230, 253, 0.95) 98%, transparent),
+    radial-gradient(1.2px 1.2px at 195px 75px, rgba(224, 242, 254, 0.95) 98%, transparent),
+    radial-gradient(1.6px 1.6px at 70px 200px, rgba(255, 255, 255, 0.94) 98%, transparent),
+    linear-gradient(160deg, rgba(186, 230, 253, 0) 0%, rgba(186, 230, 253, 0.7) 42%, rgba(186, 230, 253, 0) 100%),
+    linear-gradient(160deg, rgba(224, 242, 254, 0) 0%, rgba(224, 242, 254, 0.65) 48%, rgba(224, 242, 254, 0) 100%);
+  background-size: 240px 240px, 240px 240px, 240px 240px, 240px 240px, 3px 220px, 3px 260px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 18% -90px, 76% -140px;
+  background-repeat: repeat, repeat, repeat, repeat, repeat-y, repeat-y;
+  filter: blur(0.28px);
+  animation: stars-fall-fast 14s linear infinite, stars-twinkle 4.8s ease-in-out infinite;
 }
 
 @keyframes stars-fall {
@@ -77,10 +72,20 @@ body {
 
 @keyframes stars-fall-fast {
   from {
-    transform: translateY(-22%);
+    transform: translateY(-26%);
   }
   to {
-    transform: translateY(22%);
+    transform: translateY(26%);
+  }
+}
+
+@keyframes stars-twinkle {
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+  50% {
+    opacity: 0.62;
   }
 }
 
