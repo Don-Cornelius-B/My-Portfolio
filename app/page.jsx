@@ -17,6 +17,21 @@ const projects = [
     description:
       'P2P security gateway bridging mobile sockets with RF hardware for emergency response. Designed for reliability with automated build/test checks for mobile socket messaging using GitHub Actions.',
     tags: ['Python', 'C++', 'ESP32'],
+    diagram: {
+      nodes: [
+        { id: 'field', label: 'Field Device', x: 11, y: 16 },
+        { id: 'relay', label: 'Secure Relay', x: 50, y: 16 },
+        { id: 'ops', label: 'Ops Console', x: 89, y: 16 },
+        { id: 'check', label: 'Threat Check', x: 33, y: 72 },
+        { id: 'rf', label: 'RF Hardware', x: 67, y: 72 },
+      ],
+      links: [
+        { from: 'field', to: 'relay' },
+        { from: 'relay', to: 'ops' },
+        { from: 'relay', to: 'check' },
+        { from: 'relay', to: 'rf' },
+      ],
+    },
   },
   {
     id: 'virspace',
@@ -24,6 +39,21 @@ const projects = [
     description:
       'Scalable multi-user virtual world with 3D digital twins. Built around real-time state synchronization and low-latency data flow using Supabase.',
     tags: ['React', 'Supabase', 'Three.js'],
+    diagram: {
+      nodes: [
+        { id: 'avatar', label: 'Client Avatars', x: 13, y: 16 },
+        { id: 'sync', label: 'Realtime Sync', x: 50, y: 16 },
+        { id: 'scene', label: 'Twin Scene', x: 87, y: 16 },
+        { id: 'state', label: 'State Cache', x: 32, y: 72 },
+        { id: 'db', label: 'Supabase', x: 68, y: 72 },
+      ],
+      links: [
+        { from: 'avatar', to: 'sync' },
+        { from: 'sync', to: 'scene' },
+        { from: 'sync', to: 'state' },
+        { from: 'sync', to: 'db' },
+      ],
+    },
   },
   {
     id: 'ecosphere',
@@ -31,6 +61,21 @@ const projects = [
     description:
       '2D eco-simulation game engineered in Unity with dynamic logic loops and continuous feedback systems to model evolving environmental states.',
     tags: ['Unity', 'Piskel'],
+    diagram: {
+      nodes: [
+        { id: 'player', label: 'Player Input', x: 13, y: 16 },
+        { id: 'loop', label: 'Simulation Loop', x: 50, y: 16 },
+        { id: 'hud', label: 'Game HUD', x: 87, y: 16 },
+        { id: 'eco', label: 'Eco Rules', x: 30, y: 72 },
+        { id: 'assets', label: 'Asset Pipeline', x: 70, y: 72 },
+      ],
+      links: [
+        { from: 'player', to: 'loop' },
+        { from: 'loop', to: 'hud' },
+        { from: 'loop', to: 'eco' },
+        { from: 'eco', to: 'assets' },
+      ],
+    },
   },
   {
     id: 'resqtap',
@@ -38,6 +83,21 @@ const projects = [
     description:
       'SOS GPS tracking workflow integrating ESP32 nodes with Telegram Bot API to route emergency location data quickly and clearly.',
     tags: ['ESP32', 'Arduino'],
+    diagram: {
+      nodes: [
+        { id: 'client', label: 'SOS Trigger', x: 11, y: 16 },
+        { id: 'gateway', label: 'Location Router', x: 50, y: 16 },
+        { id: 'alert', label: 'Telegram Alert', x: 89, y: 16 },
+        { id: 'gps', label: 'GPS Parsing', x: 31, y: 72 },
+        { id: 'unit', label: 'ESP32 Unit', x: 69, y: 72 },
+      ],
+      links: [
+        { from: 'client', to: 'gateway' },
+        { from: 'gateway', to: 'alert' },
+        { from: 'gateway', to: 'gps' },
+        { from: 'gps', to: 'unit' },
+      ],
+    },
   },
 ];
 
@@ -92,11 +152,10 @@ function Orbit() {
           <motion.div
             key={item.name}
             className="absolute left-1/2 top-1/2"
-            style={{ transform: `rotate(${item.angle}deg) translateY(-112px)` }}
-            whileHover={{ scale: 1.1 }}
+            style={{ transform: `rotate(${item.angle}deg) translateY(-126px)` }}
             transition={spring}
           >
-            <div className="-translate-x-1/2 rounded-full border border-cyan-300/50 bg-slate-900/80 px-3 py-1 text-xs text-cyan-200">
+            <div className="-translate-x-1/2 rounded-full border border-cyan-300/50 bg-slate-900/80 px-3 py-1 text-xs text-cyan-200 transition-all hover:bg-cyan-400/10 hover:shadow-[0_0_18px_rgba(56,189,248,0.35)]">
               {item.name}
             </div>
           </motion.div>
@@ -114,18 +173,48 @@ function Orbit() {
   );
 }
 
-function ArchitectureDiagram() {
+function ArchitectureDiagram({ diagram }) {
+  if (!diagram?.nodes?.length) {
+    return null;
+  }
+
+  const nodesById = Object.fromEntries(diagram.nodes.map((node) => [node.id, node]));
+
   return (
-    <div className="architecture glass mt-4 rounded-xl p-3">
-      <div className="node left-2 top-3">Client Layer</div>
-      <div className="node left-[40%] top-3">Gateway API</div>
-      <div className="node right-2 top-3">Telemetry</div>
-      <div className="node left-[18%] bottom-3">Processing</div>
-      <div className="node right-[14%] bottom-3">Hardware / DB</div>
-      <div className="line left-[22%] top-[38%] h-[2px] w-[24%]" />
-      <div className="line left-[60%] top-[38%] h-[2px] w-[23%]" />
-      <div className="line left-[36%] top-[46%] h-[33%] w-[2px]" />
-      <div className="line left-[65%] top-[46%] h-[33%] w-[2px]" />
+    <div className="architecture glass mt-4 overflow-hidden rounded-xl p-3">
+      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" preserveAspectRatio="none" aria-hidden="true">
+        {diagram.links?.map((link, index) => {
+          const from = nodesById[link.from];
+          const to = nodesById[link.to];
+
+          if (!from || !to) {
+            return null;
+          }
+
+          const bridgeY = Math.max(26, Math.min(62, (from.y + to.y) / 2));
+
+          return (
+            <polyline
+              key={`${link.from}-${link.to}-${index}`}
+              points={`${from.x},${from.y} ${from.x},${bridgeY} ${to.x},${bridgeY} ${to.x},${to.y}`}
+              fill="none"
+              stroke="rgba(103, 232, 249, 0.55)"
+              strokeWidth="0.65"
+              strokeLinecap="round"
+            />
+          );
+        })}
+      </svg>
+
+      {diagram.nodes.map((node) => (
+        <div
+          key={node.id}
+          className="node -translate-x-1/2 -translate-y-1/2"
+          style={{ left: `${node.x}%`, top: `${node.y}%` }}
+        >
+          {node.label}
+        </div>
+      ))}
     </div>
   );
 }
@@ -343,7 +432,7 @@ export default function Home() {
             >
               <h3 className="text-2xl font-bold text-slate-100">{activeProject.title} — Project Deep Dive</h3>
               <p className="mt-2 text-slate-300">{activeProject.description}</p>
-              <ArchitectureDiagram />
+              <ArchitectureDiagram diagram={activeProject.diagram} />
               <div className="mt-4 flex flex-wrap gap-2">
                 {activeProject.tags.map((tag) => (
                   <span key={tag} className="rounded-full border border-cyan-300/40 px-2 py-1 text-xs text-cyan-200">
